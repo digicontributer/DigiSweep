@@ -1,5 +1,5 @@
 {
-  "short_name": "DigiSweep",
+  "short_name": "digisweep",
   "name": "A simple tool for sweeping multiple digibyte private keys to a new address",
   "icons": [
     {
