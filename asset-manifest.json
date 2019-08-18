@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/digisweep/static/css/main.50a7ae4d.chunk.css",
+    "main.js": "/digisweep/static/js/main.3e12dd60.chunk.js",
+    "main.js.map": "/digisweep/static/js/main.3e12dd60.chunk.js.map",
+    "runtime~main.js": "/digisweep/static/js/runtime~main.add04cae.js",
+    "runtime~main.js.map": "/digisweep/static/js/runtime~main.add04cae.js.map",
+    "static/js/2.e2524190.chunk.js": "/digisweep/static/js/2.e2524190.chunk.js",
+    "static/js/2.e2524190.chunk.js.map": "/digisweep/static/js/2.e2524190.chunk.js.map",
+    "index.html": "/digisweep/index.html",
+    "precache-manifest.d1c974a722ce7f5fdb34396a84014161.js": "/digisweep/precache-manifest.d1c974a722ce7f5fdb34396a84014161.js",
+    "service-worker.js": "/digisweep/service-worker.js",
+    "static/css/main.50a7ae4d.chunk.css.map": "/digisweep/static/css/main.50a7ae4d.chunk.css.map"
+  }
+}
