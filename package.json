@@ -6,7 +6,7 @@
   "author": "Gary Mckee <esot@digibyte.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/digicontributer/digisweet.git"
+    "url": "https://github.com/digicontributer/digisweep.git"
   },
   "dependencies": {
     "@material-ui/core": "^4.3.2",
