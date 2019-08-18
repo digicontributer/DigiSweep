@@ -18,6 +18,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      gapLimit: GAP_ADDRESSES_LIMIT,
       currentUnit: 'DGB',
       wif: '',
       txid: null,
@@ -37,6 +38,7 @@ class App extends Component {
       }),
       usdRate: 0
     }
+    this.state.gapStatus = this.state.gapLimit;
     this.startSearch = this.startSearch.bind(this);
     this.sendBackup = this.sendBackup.bind(this);
     this.updateAddress = this.updateAddress.bind(this);
@@ -120,7 +122,7 @@ class App extends Component {
   getNextAddress(seed) {
     seed = seed.join(" ");
     const promises = [];
-    derivitors.filter(w => w.addrs.filter(i => !i.hasBalance).length < GAP_ADDRESSES_LIMIT).forEach(derivitor => {
+    derivitors.filter(w => w.addrs.filter(i => !i.hasBalance).length < this.state.gapLimit).forEach(derivitor => {
       const getNextKey = () => {
         const len = derivitor.addrs.length;
         const mnemonic = new Mnemonic(seed);
@@ -136,7 +138,9 @@ class App extends Component {
         ])
         .spread((mainUtxos, mainLegacyUtxos, changeUtxos, changeLegacyUtxos) => {
           if(mainUtxos.length || mainLegacyUtxos.length || changeUtxos.length || changeLegacyUtxos.length) {
-            derivitor.addrs[len].hasBalance = true;
+            let newGap = this.state.gapStatus;
+            this.setState({ gapStatus: newGap += 1 });
+            derivitor.addrs[len].hasBalance = true; 
           }
           derivitor.addrs[len].mainUtxos = mainUtxos;
           derivitor.addrs[len].mainLegacyUtxos = mainLegacyUtxos;
@@ -146,6 +150,7 @@ class App extends Component {
           derivitor.addrs[len].mainLegacyBalance = mainLegacyUtxos.length ? mainLegacyUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
           derivitor.addrs[len].changeBalance = changeUtxos.length ? changeUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
           derivitor.addrs[len].changeLegacyBalance = changeLegacyUtxos.length ? changeLegacyUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
+          derivitor.addrs[len].balance = (derivitor.addrs[len].changeLegacyBalance + derivitor.addrs[len].changeBalance + derivitor.addrs[len].mainLegacyBalance + derivitor.addrs[len].mainBalance);
           return this.updateDerivitorStatus(derivitor.name, len);
         })
         .then(() => {
@@ -160,7 +165,7 @@ class App extends Component {
   getDataFromSeed(seed, server) {
     return new Promise((resolve, reject) => {
       return this.getNextAddress(seed).then(wallets => {
-        if(wallets.some(i => i.addrs.length < GAP_ADDRESSES_LIMIT) || wallets.filter(w => w.addrs.filter(i => !i.hasBalance).length < GAP_ADDRESSES_LIMIT).length) {
+        if(wallets.some(i => i.addrs.length < this.state.gapLimit) || wallets.filter(w => w.addrs.filter(i => !i.hasBalance).length < this.state.gapLimit).length) {
           return this.getDataFromSeed(seed);
         }
         return wallets;
@@ -176,6 +181,10 @@ class App extends Component {
             return a += b;
           }, 0)).reduce((a, b) => a+=b);
         });
+        const hasBalance = wallet.filter(w => w.totalBalance).length;
+        if (!hasBalance) {
+          return this.setState({ progressModalOpen: false, dialogOpen: true, error: 'No Funds Found!' });
+        }
         this.setState({ wallet, stepTwo: true, progressModalOpen: false });
       });
     });
@@ -205,8 +214,8 @@ class App extends Component {
     const path = `m/0'/`;
     const len = derivitor.addrs.length;
     const hdKey = DigiByte.HDPrivateKey(xprv);
-    const addr = hdKey.derive(`${path}0'/0'`);
-    const changeAddr =  hdKey.derive(`${path}1'/0`);
+    const addr = hdKey.derive(`${path}0'/${len}'`);
+    const changeAddr =  hdKey.derive(`${path}1'/${len}`);
     derivitor.addrs[len] = { main: addr, change: changeAddr };
     return Promise.all([
       fetchUtxos(addr.privateKey.toAddress().toString()),
@@ -216,6 +225,8 @@ class App extends Component {
     ])
     .spread((mainUtxos, mainLegacyUtxos, changeUtxos, changeLegacyUtxos) => {
       if(mainUtxos.length || mainLegacyUtxos.length || changeUtxos.length || changeLegacyUtxos.length) {
+        let newGap = this.state.gapStatus;
+        this.setState({ gapStatus: newGap += 1 });
         derivitor.addrs[len].hasBalance = true;
       }
       derivitor.addrs[len].mainUtxos = mainUtxos;
@@ -226,6 +237,7 @@ class App extends Component {
       derivitor.addrs[len].mainLegacyBalance = mainLegacyUtxos.length ? mainLegacyUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
       derivitor.addrs[len].changeBalance = changeUtxos.length ? changeUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
       derivitor.addrs[len].changeLegacyBalance = changeLegacyUtxos.length ? changeLegacyUtxos.map(i => i.amount).reduce((a, b) => { return a += b }) : 0;
+      derivitor.addrs[len].balance = (derivitor.addrs[len].changeLegacyBalance + derivitor.addrs[len].changeBalance + derivitor.addrs[len].mainLegacyBalance + derivitor.addrs[len].mainBalance);
       return this.updateDerivitorStatus(derivitor.name, len);
     })
     .then(() => {
@@ -236,7 +248,7 @@ class App extends Component {
   getDataFromXprv(xprv, wallet) {
     const derivitor = wallet ? wallet : { addrs: [], name: 'DigiByte Core' };
     return this.getNextXprvAddress(xprv[0], derivitor).then(wallets => {
-      if(wallets.addrs.length < GAP_ADDRESSES_LIMIT || wallets.addrs.filter(i => !i.hasBalance).length < GAP_ADDRESSES_LIMIT) {
+      if(wallets.addrs.length < this.state.gapLimit || wallets.addrs.filter(i => !i.hasBalance).length < this.state.gapLimit) {
         return this.getDataFromXprv(xprv, wallets);
       }
       return wallets;
@@ -251,6 +263,9 @@ class App extends Component {
         wallets.totalBalance = wallets.addrs.map(a => a.utxos.map(i => i.amount).reduce((a, b) => {
           return a += b;
         }, 0)).reduce((a, b) => a+=b);
+        if (!wallets.totalBalance) {
+          return this.setState({ progressModalOpen: false, dialogOpen: true, error: 'No Funds Found!' });
+        }
         this.setState({ wallet: [wallets], stepTwo: true, progressModalOpen: false });
       }
     });
@@ -277,7 +292,6 @@ class App extends Component {
         };
       })
       .catch(err => {
-        console.log(err);
         this.setState({ dialogOpen: true, error: err.message })
       });
   }
@@ -313,7 +327,6 @@ class App extends Component {
       this.setState({ txid, stepThree: true, stepTwo: false, confirmDialog: false });
     })
     .catch(err => {
-      console.log(err);
       this.setState({ dialogOpen: true, error: err.message })
     })
   }
@@ -352,10 +365,10 @@ class App extends Component {
           error={this.state.error}
           closeDialog={() => this.setState({ dialogOpen: false })}
         />
-        <DerivitorStatus closeModal={() => this.setState({ progressModalOpen: false})} derivitorStatus={this.state.derivitorStatus} progressModalOpen={this.state.progressModalOpen} />
+        <DerivitorStatus gapLimit={this.state.gapStatus} closeModal={() => this.setState({ progressModalOpen: false})} derivitorStatus={this.state.derivitorStatus} progressModalOpen={this.state.progressModalOpen} />
         <header className="App-header">
           <h1>DigiSweep</h1>
-          <div style={{ paddingRight: '25px', cursor: 'pointer', userSelect: 'none' }} onClick={() => this.setState({ currentUnit: this.state.currentUnit === 'DGB' ? 'USD' : 'DGB' })}>
+          <div style={{ paddingRight: '25px', cursor: 'pointer', userSelect: 'none' }} onClick={() => this.setState({ currentUnit: this.state.currentUnit === 'DGB' ? 'USD' : 'DGB' })}>            
             <h2>Unit: {this.state.currentUnit}</h2>
           </div>
         </header>
@@ -365,6 +378,8 @@ class App extends Component {
           }
           { !this.state.stepThree && 
             <StepOne
+              gapLimit={this.state.gapLimit}
+              updateGapLimit={e => this.setState({ gapLimit: e.target.value, gapStatus: e.target.value })}
               wif={this.state.wif}
               selectedServer={this.state.selectedServer}
               updateWif={e => this.setState({ wif: e.target.value })}

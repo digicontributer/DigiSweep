@@ -1,7 +1,13 @@
+html, body, #root {
+  margin: 0;
+  height: 100%;
+}
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .App-header {
@@ -18,12 +24,13 @@
   margin-left: 15%;
   margin-right: 15%;
   padding: 25px;
-  height: 90vh;
   text-align: left;
+  flex: 1
 }
 
 .App-footer {
-  height: 5vh;
+  max-height: 5vh;
+  flex: 1;
   background-color: gray;
 }
 

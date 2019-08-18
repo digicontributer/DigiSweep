@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 
 
-export default function ({ closeModal, derivitorStatus, progressModalOpen }) {
+export default function ({ closeModal, derivitorStatus, gapLimit, progressModalOpen }) {
   return (
     <Modal
       aria-labelledby="simple-modal-title"
@@ -37,7 +37,7 @@ export default function ({ closeModal, derivitorStatus, progressModalOpen }) {
                     {i.name}
                   </TableCell>
                   <TableCell>
-                    [{i.status}/20]
+                    [{i.status}/{gapLimit}]
                   </TableCell>
                 </TableRow>
               );

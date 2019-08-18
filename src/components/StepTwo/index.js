@@ -86,9 +86,9 @@ export default function ({ addressError, currentUnit, dgbAddress, getBalance, se
             </TableRow>
           </TableHead>
           <TableBody>
-            { wallet.filter(i => i.totalBalance).map((i) => {
-              if (i.type === 'seed') {
-                return i.addrs.filter(o => o.mainLegacyBalance).map((o, idx) => {
+            { wallet.filter(i => i.totalBalance).map((i, iterator) => {
+              if (i.type !== 'privKey') {
+                return i.addrs.filter(o => o.hasBalance).map((o, idx) => {
                   return (
                     <TableRow key={idx}>
                       <TableCell>
@@ -98,7 +98,7 @@ export default function ({ addressError, currentUnit, dgbAddress, getBalance, se
                         {o.main.privateKey.toLegacyAddress().toString()}
                       </TableCell>
                       <TableCell>
-                        {getBalance(o.mainLegacyBalance)} {currentUnit}
+                        {getBalance(o.balance)} {currentUnit}
                       </TableCell>
                       <TableCell>
                         {i.name}
@@ -126,7 +126,7 @@ export default function ({ addressError, currentUnit, dgbAddress, getBalance, se
                   );                            
                 })
               } else {
-                return (<div/>);
+                return (<TableRow key={iterator}/>);
               }
             })}
           </TableBody>
