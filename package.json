@@ -2,7 +2,7 @@
   "name": "digisweep",
   "version": "2.0.0",
   "description": "A simple tool for sweeping multiple digibyte private keys to a new address",
-  "homepage": "https://digibyte-core.github.io/digisweep",
+  "homepage": "https://digibyte-core.github.io/DigiSweep",
   "author": "Gary Mckee <esot@digibyte.io>",
   "repository": {
     "type": "git",
