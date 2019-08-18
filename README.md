@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# digisweep
 
-## Available Scripts
+![npm](https://img.shields.io/npm/v/digisweep.svg) ![license](https://img.shields.io/npm/l/digisweep.svg) ![github-issues](https://img.shields.io/github/issues/digicontributer/digisweet.svg)  ![Circle CI build status](https://circleci.com/gh/digicontributer/digisweet.svg?style=svg)
 
-In the project directory, you can run:
+A simple tool for sweeping multiple digibyte private keys to a new address
 
-### `npm start`
+![nodei.co](https://nodei.co/npm/digisweep.png?downloads=true&downloadRank=true&stars=true)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![travis-status](https://img.shields.io/travis/digicontributer/digisweet.svg)
+![stars](https://img.shields.io/github/stars/digicontributer/digisweet.svg)
+![forks](https://img.shields.io/github/forks/digicontributer/digisweet.svg)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+![forks](https://img.shields.io/github/forks/digicontributer/digisweet.svg)
 
-### `npm test`
+![](https://david-dm.org/digicontributer/digisweet/status.svg)
+![](https://david-dm.org/digicontributer/digisweet/dev-status.svg)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Install
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+`npm install --save digisweep`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ - **npm run start** : `react-scripts start`
+ - **npm run build** : `react-scripts build`
+ - **npm run test** : `react-scripts test`
+ - **npm run eject** : `react-scripts eject`
+ - **npm run predeploy** : `npm run build`
+ - **npm run deploy** : `gh-pages -d build`
+ - **npm run readme** : `node ./node_modules/.bin/node-readme`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Package | Version | Dev
+--- |:---:|:---:
+[@material-ui/core](https://www.npmjs.com/package/@material-ui/core) | ^4.3.2 | ✖
+[bip38](https://www.npmjs.com/package/bip38) | ^2.0.3 | ✖
+[bluebird](https://www.npmjs.com/package/bluebird) | ^3.5.5 | ✖
+[digibyte](https://www.npmjs.com/package/digibyte) | ^0.15.6 | ✖
+[digibytejs-mnemonic](https://www.npmjs.com/package/digibytejs-mnemonic) | ^1.5.2 | ✖
+[gh-pages](https://www.npmjs.com/package/gh-pages) | ^2.1.1 | ✖
+[react](https://www.npmjs.com/package/react) | ^16.9.0 | ✖
+[react-dom](https://www.npmjs.com/package/react-dom) | ^16.9.0 | ✖
+[react-scripts](https://www.npmjs.com/package/react-scripts) | 3.1.0 | ✖
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions welcome; Please submit all pull requests the against master branch. If your pull request contains JavaScript patches or features, you should include relevant unit tests. Please check the [Contributing Guidelines](contributng.md) for more details. Thanks!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Author
 
-### Code Splitting
+Gary Mckee <esot@digibyte.io>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## License
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+ - **MIT** : http://opensource.org/licenses/MIT
