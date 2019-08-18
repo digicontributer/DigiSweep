@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "DigiSweep",
+  "name": "A simple tool for sweeping multiple digibyte private keys to a new address",
   "icons": [
     {
       "src": "favicon.ico",
