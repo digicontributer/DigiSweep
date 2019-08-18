@@ -1,3 +1,0 @@
-#XMR
-
-Buffered Ajax library

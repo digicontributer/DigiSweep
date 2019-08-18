@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #282c34;
+  max-height: 5vh;
+  display: flex;
+  padding-left: 50px;
+  justify-content: space-between;
+  color: white;
+  line-height: 5%;
+}
+
+.App-body {
+  margin-left: 15%;
+  margin-right: 15%;
+  padding: 25px;
+  height: 90vh;
+  text-align: left;
+}
+
+.App-footer {
+  height: 5vh;
+  background-color: gray;
+}
+
+.card-title {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.uploadForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.textField {
+  width: 500px;
+}
+
+.uploadInput {
+  display: none;
+}
+
+.formControl {
+  min-width: 200px;
+  flex-basis: 100%;
+}
+
+.submitButton {
+  width: 100%;
+}
