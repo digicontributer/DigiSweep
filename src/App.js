@@ -21,7 +21,7 @@ class App extends Component {
       currentUnit: 'DGB',
       wif: '',
       txid: null,
-      dgbAddress: 'D9DvrcnBRuNwv3fAJ7etf2DPYeCC8UAfrN',
+      dgbAddress: '',
       addressError: true,
       wallet: [],
       selectedServer: 'https://digiexplorer.info',
