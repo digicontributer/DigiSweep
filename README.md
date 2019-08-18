@@ -1,19 +1,19 @@
 # digisweep
 
-![npm](https://img.shields.io/npm/v/digisweep.svg) ![license](https://img.shields.io/npm/l/digisweep.svg) ![github-issues](https://img.shields.io/github/issues/digicontributer/digisweet.svg)  ![Circle CI build status](https://circleci.com/gh/digicontributer/digisweet.svg?style=svg)
+![npm](https://img.shields.io/npm/v/digisweep.svg) ![license](https://img.shields.io/npm/l/digisweep.svg) ![github-issues](https://img.shields.io/github/issues/digicontributer/digisweep.svg)  ![Circle CI build status](https://circleci.com/gh/digicontributer/digisweep.svg?style=svg)
 
 A simple tool for sweeping multiple digibyte private keys to a new address
 
 ![nodei.co](https://nodei.co/npm/digisweep.png?downloads=true&downloadRank=true&stars=true)
 
-![travis-status](https://img.shields.io/travis/digicontributer/digisweet.svg)
-![stars](https://img.shields.io/github/stars/digicontributer/digisweet.svg)
-![forks](https://img.shields.io/github/forks/digicontributer/digisweet.svg)
+![travis-status](https://img.shields.io/travis/digicontributer/digisweep.svg)
+![stars](https://img.shields.io/github/stars/digicontributer/digisweep.svg)
+![forks](https://img.shields.io/github/forks/digicontributer/digisweep.svg)
 
-![forks](https://img.shields.io/github/forks/digicontributer/digisweet.svg)
+![forks](https://img.shields.io/github/forks/digicontributer/digisweep.svg)
 
-![](https://david-dm.org/digicontributer/digisweet/status.svg)
-![](https://david-dm.org/digicontributer/digisweet/dev-status.svg)
+![](https://david-dm.org/digicontributer/digisweep/status.svg)
+![](https://david-dm.org/digicontributer/digisweep/dev-status.svg)
 
 ## Features
 
@@ -46,6 +46,7 @@ Package | Version | Dev
 [react](https://www.npmjs.com/package/react) | ^16.9.0 | ✖
 [react-dom](https://www.npmjs.com/package/react-dom) | ^16.9.0 | ✖
 [react-scripts](https://www.npmjs.com/package/react-scripts) | 3.1.0 | ✖
+[node-readme](https://www.npmjs.com/package/node-readme) | ^0.1.9 | ✔
 
 
 ## Contributing
