@@ -46,7 +46,6 @@ Package | Version | Dev
 [react](https://www.npmjs.com/package/react) | ^16.9.0 | ✖
 [react-dom](https://www.npmjs.com/package/react-dom) | ^16.9.0 | ✖
 [react-scripts](https://www.npmjs.com/package/react-scripts) | 3.1.0 | ✖
-[node-readme](https://www.npmjs.com/package/node-readme) | ^0.1.9 | ✔
 
 
 ## Contributing
